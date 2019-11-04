@@ -4,4 +4,15 @@ Esse é um bot ativado através de uma função AWS Lambda, que tuíta no [@Feri
 
 ### backlog
 
-- [x] incluir outros triggers em horários espaçados para as outras universidades fora a UFOP e UFMG
+- incluir outros triggers em horários espaçados para todas as outras universidades:
+- [x] UFOP
+- [x] UFMG
+- [] UFJF
+- [] UFLA
+- [] UFSJ
+- [] UFTM
+- [] UFU
+- [] UFV
+- [] UFVJM
+- [] UNIFAL
+- [] UNIFEI
