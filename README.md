@@ -7,12 +7,12 @@ Esse é um bot ativado através de uma função AWS Lambda, que tuíta no [@Feri
 - incluir outros triggers em horários espaçados para todas as outras universidades:
 - [x] UFOP
 - [x] UFMG
-- [] UFJF
-- [] UFLA
-- [] UFSJ
-- [] UFTM
-- [] UFU
-- [] UFV
-- [] UFVJM
-- [] UNIFAL
-- [] UNIFEI
+- [ ] UFJF
+- [ ] UFLA
+- [ ] UFSJ
+- [ ] UFTM
+- [ ] UFU
+- [ ] UFV
+- [ ] UFVJM
+- [ ] UNIFAL
+- [ ] UNIFEI
