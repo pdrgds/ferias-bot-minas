@@ -54,7 +54,7 @@ exports.handler = async () => {
 
     if (status) {
       console.log(status);
-      // await new Promise(resolve => twit.post("statuses/update", {status}, resolve));
+      await new Promise(resolve => twit.post("statuses/update", {status}, resolve));
     }
   }
 };
