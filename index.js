@@ -6,8 +6,8 @@ const Twit = require("twit");
 const apiKeys = require("./api-keys.json");
 
 const twit = new Twit({
-  ...apiKeys,
-  timeout_ms: 60 * 1000
+  timeout_ms: 60 * 1000,
+  ...apiKeys
 });
 
 const universidades = [
@@ -58,5 +58,3 @@ exports.handler = async () => {
     }
   }
 };
-
-exports.handler();
