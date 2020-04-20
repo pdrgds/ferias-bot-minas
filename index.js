@@ -14,7 +14,7 @@ const twit = new Twit({
   // access_token_secret: process.env.access_token_secret,
 });
 
-const universidades = [
+const universities = [
   ["UFOP", "21/12/2019"],
   ["UFMG", "07/12/2019"]
   // ["UFJF", "06/12/2019"],
@@ -29,31 +29,31 @@ const universidades = [
 ];
 
 exports.handler = async () => {
-  for (const [nome, fimSemestre] of universidades) {
-    const hoje = moment(new Date());
-    let diferencaDias;
+  for (const [name, endOfTerm] of universities) {
+    const today = moment(new Date());
+    let diffDays;
 
-    if (hoje.isSame(moment(fimSemestre, "DD/MM/YYYY"), "day")) {
-      diferencaDias = 0;
+    if (today.isSame(moment(endOfTerm, "DD/MM/YYYY"), "day")) {
+      diffDays = 0;
     } else {
-      diferencaDias = moment(fimSemestre, "DD/MM/YYYY").diff(hoje, "days") + 1;
+      diffDays = moment(endOfTerm, "DD/MM/YYYY").diff(today, "days") + 1;
     }
 
     let falta = "falta";
-    if (diferencaDias > 1) {
+    if (diffDays > 1) {
       falta = falta + "m";
     }
 
     let dia = "dia";
-    if (diferencaDias > 1) {
+    if (diffDays > 1) {
       dia = dia + "s";
     }
 
     let status = null;
-    if (diferencaDias > 0) {
-      status = `${falta} ${diferencaDias} ${dia} para o fim do semestre na ${nome}!`;
-    } else if (diferencaDias === 0) {
-      status = `Aee! O semestre na ${nome} acabou!`;
+    if (diffDays > 0) {
+      status = `${falta} ${diffDays} ${dia} para o fim do semestre na ${name}!`;
+    } else if (diffDays === 0) {
+      status = `Aee! O semestre na ${name} acabou!`;
     }
 
     if (status) {
