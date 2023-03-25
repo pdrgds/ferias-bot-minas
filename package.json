@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.24.0",
-    "twit": "^2.2.11"
+    "dotenv": "16.0.3",
+    "moment": "2.29.4",
+    "twitter-api-v2": "1.14.2"
   }
 }

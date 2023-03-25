@@ -1,39 +1,38 @@
 "use strict";
 
 const moment = require("moment");
-const Twit = require("twit");
+const { TwitterApi } = require("twitter-api-v2");
+require("dotenv").config();
 
-const twit = new Twit({
-  timeout_ms: 60 * 1000,
-  consumer_key: process.env.consumer_key,
-  consumer_secret: process.env.consumer_secret,
-  access_token: process.env.access_token,
-  access_token_secret: process.env.access_token_secret,
+const client = new TwitterApi({
+  appKey: process.env.api_key,
+  appSecret: process.env.api_key_secret,
+  accessToken: process.env.access_token,
+  accessSecret: process.env.access_secret,
 });
 
 const universities = [
-  ["UFOP", "21/12/2019"],
-  ["UFMG", "07/12/2019"]
-  // ["UFJF", "06/12/2019"],
-  // ["UFLA", "18/12/2019"],
-  // ["UFSJ", "20/12/2019"],
-  // ["UFTM", "12/12/2019"],
-  // ["UFU", "21/12/2019"],
-  // ["UFV", "13/12/2019"],
-  // ["UFVJM", "09/01/2020"],
-  // ["UNIFAL", "20/12/2019"],
-  // ["UNIFEI", "14/12/2019"]
+  ["UFOP", "01/04/2023"],
+  //["UFMG", "07/12/2019"],
 ];
 
 exports.handler = async () => {
+  await client.appLogin();
+
   for (const [name, endOfTerm] of universities) {
-    const today = moment(new Date());
+    let today = moment(new Date());
+    today = today.set("hour", 0);
+    today = today.set("minute", 0);
+    today = today.set("second", 0);
+    today = today.set("millisecond", 0);
     let diffDays;
 
-    if (today.isSame(moment(endOfTerm, "DD/MM/YYYY"), "day")) {
+    const endOfTermMoment = moment(endOfTerm, "DD/MM/YYYY");
+
+    if (today.isSame(endOfTermMoment, "day")) {
       diffDays = 0;
     } else {
-      diffDays = moment(endOfTerm, "DD/MM/YYYY").diff(today, "days") + 1;
+      diffDays = endOfTermMoment.diff(today, "days");
     }
 
     let falta = "falta";
@@ -55,9 +54,11 @@ exports.handler = async () => {
 
     if (status) {
       console.log(status);
-      await new Promise(resolve => twit.post("statuses/update", {status}, resolve));
+      try {
+        const newTweet = await client.v1.tweet(status);
+      } catch (error) {
+        console.log(status);
+      }
     }
   }
 };
-
-// exports.handler();
