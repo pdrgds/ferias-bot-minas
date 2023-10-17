@@ -55,7 +55,7 @@ exports.handler = async () => {
     if (status) {
       console.log(status);
       try {
-        const newTweet = await client.v1.tweet(status);
+        const newTweet = await client.v2.tweet(status);
       } catch (error) {
         console.log(status);
       }
